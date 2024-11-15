@@ -112,6 +112,9 @@ impl WinitWindows {
             }
         };
 
+        let icon = vec![32, 32, 32, 255];
+        let window_icon = Some(winit::window::Icon::from_rgba(icon, 1, 1).unwrap());
+
         winit_window_attributes = winit_window_attributes
             .with_window_level(convert_window_level(window.window_level))
             .with_theme(window.window_theme.map(convert_window_theme))
@@ -119,6 +122,7 @@ impl WinitWindows {
             .with_enabled_buttons(convert_enabled_buttons(window.enabled_buttons))
             .with_decorations(window.decorations)
             .with_transparent(window.transparent)
+            .with_window_icon(window_icon)
             .with_visible(window.visible);
 
         #[cfg(target_os = "windows")]
